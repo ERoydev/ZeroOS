@@ -172,6 +172,8 @@ sys_registry! {
         (SYS_lseek, handlers::vfs::sys_lseek, 3),
         (SYS_ioctl, handlers::vfs::sys_ioctl, 3),
         (SYS_fstat, handlers::vfs::sys_fstat, 2),
+        // ANCHOR: by returning 0 from ppoll, we tell musl "poll completed", all fds are ready
+        (SYS_ppoll, handlers::sys_noop, 5),
     }
 
     // Random syscalls.

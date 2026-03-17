@@ -24,6 +24,12 @@ pub fn sys_noop() -> isize {
     0
 }
 
+/// Handler for `ppoll` syscall. Indicate all fds are ready 
+#[inline]
+pub fn sys_ppoll_stub(_fds: usize, nfds: usize, _timeout: usize, _sigmask: usize, _sigsetsize: usize) -> isize {
+    nfds as isize
+}
+
 cfg_if! {
     if #[cfg(feature = "scheduler")] {
         #[inline]
